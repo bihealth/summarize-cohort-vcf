@@ -139,7 +139,13 @@ public class App {
 				VariantContextWriter writer = constructWriter()) {
 			writer.writeHeader(extendHeader(reader));
 
+			String prevContig = null;
 			for (VariantContext vc : reader) {
+				if (vc.getContig().equals(prevContig)) {
+					System.err.println("Starting on " + vc.getContig());
+					prevContig = vc.getContig();
+				}
+				
 				vc = processVariantContext(vc, allSampleNames, "");
 				if (founderSampleNames != null) {
 					vc = processVariantContext(vc, founderSampleNames, FOUNDER_PREFIX);
