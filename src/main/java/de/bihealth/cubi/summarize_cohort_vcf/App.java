@@ -142,7 +142,7 @@ public class App {
 
 			String prevContig = null;
 			for (VariantContext vc : reader) {
-				if (vc.getContig().equals(prevContig)) {
+				if (!vc.getContig().equals(prevContig)) {
 					System.err.println("Starting on " + vc.getContig());
 					prevContig = vc.getContig();
 				}
