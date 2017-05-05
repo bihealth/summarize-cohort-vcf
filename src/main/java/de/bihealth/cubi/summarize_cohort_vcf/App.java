@@ -1,14 +1,11 @@
 package de.bihealth.cubi.summarize_cohort_vcf;
 
 import com.google.common.collect.ImmutableSet;
-import de.charite.compbio.jannovar.Jannovar;
 import de.charite.compbio.jannovar.pedigree.PedFileContents;
 import de.charite.compbio.jannovar.pedigree.PedFileReader;
 import de.charite.compbio.jannovar.pedigree.PedParseException;
 import de.charite.compbio.jannovar.pedigree.PedPerson;
 import de.charite.compbio.jannovar.pedigree.Sex;
-import htsjdk.tribble.index.tabix.TabixFormat;
-import htsjdk.tribble.index.tabix.TabixIndexCreator;
 import htsjdk.variant.variantcontext.Allele;
 import htsjdk.variant.variantcontext.Genotype;
 import htsjdk.variant.variantcontext.VariantContext;
@@ -72,6 +69,9 @@ public class App {
 		parser.addArgument("--input-vcf").required(true).help("Path to input VCF file");
 		parser.addArgument("--output-vcf").required(true).help("Path to output VCF file");
 		parser.addArgument("--pedigree").help("Optional path to pedigree file");
+		parser.addArgument("--write-samples")
+				.help("Write out samples; default is not to write them out").setDefault(false)
+				.action(Arguments.storeTrue());
 
 		Namespace ns;
 		try {
@@ -80,6 +80,7 @@ public class App {
 			options.setPathInputVcf(ns.getString("input_vcf"));
 			options.setPathInputPed(ns.getString("pedigree"));
 			options.setPathOutputVcf(ns.getString("output_vcf"));
+			options.setWriteSamples(ns.getBoolean("write_samples"));
 		} catch (ArgumentParserException e) {
 			parser.handleError(e);
 			System.exit(1);
@@ -145,7 +146,7 @@ public class App {
 					System.err.println("Starting on " + vc.getContig());
 					prevContig = vc.getContig();
 				}
-				
+
 				vc = processVariantContext(vc, allSampleNames, "");
 				if (founderSampleNames != null) {
 					vc = processVariantContext(vc, founderSampleNames, FOUNDER_PREFIX);

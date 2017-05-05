@@ -7,41 +7,50 @@ package de.bihealth.cubi.summarize_cohort_vcf;
  */
 public class ProgramOptions {
 
-    private String pathInputVcf;
-    private String pathInputPed;
-    private String pathOutputVcf;
+	private String pathInputVcf;
+	private String pathInputPed;
+	private String pathOutputVcf;
+	private boolean writeSamples = false;
 
-    public ProgramOptions() {
-    }
+	public ProgramOptions() {
+	}
 
-    public String getPathInputVcf() {
-        return pathInputVcf;
-    }
+	public String getPathInputVcf() {
+		return pathInputVcf;
+	}
 
-    public void setPathInputVcf(String pathInputVcf) {
-        this.pathInputVcf = pathInputVcf;
-    }
+	public void setPathInputVcf(String pathInputVcf) {
+		this.pathInputVcf = pathInputVcf;
+	}
 
-    public String getPathInputPed() {
-        return pathInputPed;
-    }
+	public String getPathInputPed() {
+		return pathInputPed;
+	}
 
-    public void setPathInputPed(String pathInputPed) {
-        this.pathInputPed = pathInputPed;
-    }
+	public void setPathInputPed(String pathInputPed) {
+		this.pathInputPed = pathInputPed;
+	}
 
-    public String getPathOutputVcf() {
-        return pathOutputVcf;
-    }
+	public String getPathOutputVcf() {
+		return pathOutputVcf;
+	}
 
-    public void setPathOutputVcf(String pathOutputVcf) {
-        this.pathOutputVcf = pathOutputVcf;
-    }
+	public void setPathOutputVcf(String pathOutputVcf) {
+		this.pathOutputVcf = pathOutputVcf;
+	}
 
-    @Override
-    public String toString() {
-        return "Options [pathInputVcf=" + pathInputVcf + ", pathInputPed=" + pathInputPed
-                + ", pathOutputVcf=" + pathOutputVcf + "]";
-    }
+	public boolean isWriteSamples() {
+		return writeSamples;
+	}
+
+	public void setWriteSamples(boolean writeSamples) {
+		this.writeSamples = writeSamples;
+	}
+
+	@Override
+	public String toString() {
+		return "ProgramOptions [pathInputVcf=" + pathInputVcf + ", pathInputPed=" + pathInputPed
+				+ ", pathOutputVcf=" + pathOutputVcf + ", writeSamples=" + writeSamples + "]";
+	}
 
 }
