@@ -1,0 +1,26 @@
+# Ignore releases
+*/0.*
+
+# Maven stuff
+target
+dependency-reduced-pom.xml
+# Vim swap files
+*.sw?
+# gedit swap files
+*~
+# Eclipse stuff
+.classpath
+.project
+.settings
+# Coverity stuff
+cov-int*
+# IDEA stuff
+/.idea/
+*.iml
+*.versionsBackup
+# download directory
+.venv
+/data*
+# Java Mission Control flight recorder files
+*.jfr
+.attach_pid*
