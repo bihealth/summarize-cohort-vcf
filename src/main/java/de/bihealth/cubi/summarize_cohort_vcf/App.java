@@ -252,7 +252,7 @@ public class App {
 		final File outputFile = new File(options.getPathOutputVcf());
 		final VariantContextWriterBuilder writerBuilder = new VariantContextWriterBuilder()
 				.setCreateMD5().setOutputFile(outputFile)
-				.setOptions(EnumSet.of(Options.DO_NOT_WRITE_GENOTYPES, Options.INDEX_ON_THE_FLY));
+				.setOptions(EnumSet.of(Options.INDEX_ON_THE_FLY));
 		if (!options.isWriteSamples())
 			writerBuilder.setOption(Options.DO_NOT_WRITE_GENOTYPES);
 		return writerBuilder.build();
